@@ -14,6 +14,9 @@ input.onButtonPressed(Button.AB, function () {
 input.onButtonPressed(Button.B, function () {
     自己.change(LedSpriteProperty.X, 1)
 })
+input.onGesture(Gesture.EightG, function () {
+    game.gameOver()
+})
 let 子彈2: game.LedSprite = null
 let 射擊概率 = 0
 let 子彈: game.LedSprite = null
@@ -22,6 +25,16 @@ let 自己: game.LedSprite = null
 自己 = game.createSprite(2, 4)
 敵人 = game.createSprite(randint(0, 4), 0)
 game.setLife(5)
+basic.forever(function () {
+    if (input.isGesture(Gesture.TiltRight)) {
+        自己.turn(Direction.Right, 45)
+    }
+})
+basic.forever(function () {
+    if (input.isGesture(Gesture.TiltLeft)) {
+        自己.turn(Direction.Left, 45)
+    }
+})
 basic.forever(function () {
     敵人.change(LedSpriteProperty.X, randint(-1, 1))
     basic.pause(100)
